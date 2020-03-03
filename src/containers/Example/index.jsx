@@ -1,19 +1,53 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Button } from 'semantic-ui-react';
 import { Button as AntButton } from 'antd';
+import { withFormik } from 'formik';
+import PropTypes from 'prop-types';
+import { Form, Button, Input, InputIconed } from 'components/common/Form';
+import exampleFormValidations from 'helpers/form/validations/example';
+import exampleFormValues from 'helpers/form/defaultValue/example';
 import './index.scss';
 
-const Example = () => {
+const Example = ({ handleSubmit, isSubmitting }) => {
   const name = useSelector(({ example: { name } }) => name);
 
   return (
     <div className="example">
-      <div>Example Hello {name.currentName}</div>
-      <Button size="small" content="Click Me" primary />
-      <AntButton type="primary">Button</AntButton>
+      <Form onSubmit={handleSubmit} loading={isSubmitting} className="w-50 mx-auto">
+        <div className="display-4">Example Hello {name.currentName}</div>
+        <Input name="email" label="Email" />
+        <InputIconed name="password" label="Password" type="password" icon="lock" />
+        <Input name="test" label="Testy" />
+        <Button size="small" loading={isSubmitting} type="submit" content="Click Me" primary />
+        <AntButton type="primary" loading={isSubmitting} htmlType="submit">
+          OR ME
+        </AntButton>
+      </Form>
     </div>
   );
 };
 
-export default Example;
+Example.defaultProps = {
+  isSubmitting: false,
+};
+
+Example.propTypes = {
+  isSubmitting: PropTypes.bool,
+  handleSubmit: PropTypes.func.isRequired,
+};
+
+export default withFormik({
+  mapPropsToValues(defaultValues) {
+    return exampleFormValues(defaultValues);
+  },
+  validationSchema: exampleFormValidations,
+  handleSubmit(values, { setErrors, setSubmitting }) {
+    setSubmitting(true);
+    setTimeout(() => {
+      if (values.email === 'hadadus@gmail.com') {
+        setErrors({ email: 'Email already exists' });
+        setSubmitting(false);
+      }
+    }, 2000);
+  },
+})(Example);
