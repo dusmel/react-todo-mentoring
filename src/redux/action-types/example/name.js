@@ -1,0 +1,3 @@
+export const CHANGE_NAME_START = 'CHANGE_NAME';
+export const CHANGE_NAME_ERROR = 'CHANGE_NAME';
+export const CHANGE_NAME_SUCCESS = 'CHANGE_NAME';
