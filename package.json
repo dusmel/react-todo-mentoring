@@ -21,6 +21,7 @@
   "dependencies": {
     "antd": "^4.0.0",
     "bootstrap": "^4.4.1",
+    "cogo-toast": "^4.2.3",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.20.1",

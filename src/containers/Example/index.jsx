@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Button as AntButton } from 'antd';
 import { withFormik } from 'formik';
 import PropTypes from 'prop-types';
+import cogoToast from 'utils/notification';
 import { Form, Button, Input, InputIconed } from 'components/common/Form';
 import exampleFormValidations from 'helpers/form/validations/example';
 import exampleFormValues from 'helpers/form/defaultValue/example';
@@ -45,8 +46,12 @@ export default withFormik({
     setSubmitting(true);
     setTimeout(() => {
       if (values.email === 'hadadus@gmail.com') {
+        cogoToast('Email already exists', 'warn');
         setErrors({ email: 'Email already exists' });
         setSubmitting(false);
+      } else {
+        setSubmitting(false);
+        cogoToast('Email saved');
       }
     }, 2000);
   },
