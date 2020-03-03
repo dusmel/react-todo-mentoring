@@ -1,6 +1,6 @@
 export default {
   currentUser: {
-    isAuthenticated: !!localStorage.token,
+    isAuthenticated: false,
     details: {},
     error: {},
     loading: false,

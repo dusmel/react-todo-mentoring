@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 const Dashboard = ({ children }) => {
   return (
-    <div className="login">
+    <div className="dashboard p-2">
       <span>Dashboard</span>
-      <span>{children}</span>
+      <div className="p-3">{children}</div>
     </div>
   );
 };

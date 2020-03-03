@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import Routes from 'routes/Route';
 import store from 'redux/store';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'assets/index.scss';
+import 'semantic-ui-css/semantic.min.css';
 
 ReactDOM.render(
   <Provider store={store}>
