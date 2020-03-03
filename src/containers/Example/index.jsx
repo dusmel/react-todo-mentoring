@@ -1,16 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button as AntButton } from 'antd';
 import { withFormik } from 'formik';
 import PropTypes from 'prop-types';
 import cogoToast from 'utils/notification';
+import onChangeName from 'redux/actions/example/changeName';
 import { Form, Button, Input, InputIconed } from 'components/common/Form';
 import exampleFormValidations from 'helpers/form/validations/example';
 import exampleFormValues from 'helpers/form/defaultValue/example';
 import './index.scss';
 
+let dispatch;
+
 const Example = ({ handleSubmit, isSubmitting }) => {
   const name = useSelector(({ example: { name } }) => name);
+  dispatch = useDispatch();
 
   return (
     <div className="example">
@@ -50,6 +54,7 @@ export default withFormik({
         setErrors({ email: 'Email already exists' });
         setSubmitting(false);
       } else {
+        onChangeName(values.email)(dispatch);
         setSubmitting(false);
         cogoToast('Email saved');
       }
