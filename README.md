@@ -1,3 +1,3 @@
 ## React TODO 
 
-Just a CRUD project for leaning purposes.
+Just an Updated CRUD project for leaning purposes.
